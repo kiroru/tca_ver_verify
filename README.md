@@ -21,7 +21,7 @@ NavigationStackStoreによる挙動を確認できています。
 1. 以下のコマンドを実行
 ```
 $ git checkout -b v1.6.0 v1.6.0
-$ oepn tca_ver_verify/tca_ver_verify.xcodeproj
+$ open tca_ver_verify/tca_ver_verify.xcodeproj
 ```
 1. アプリを開いて"push nav"をタップする
 1. pushでカウンターをincreamentしながらナビゲーションに画面をpushする
