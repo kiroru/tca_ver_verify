@@ -61,3 +61,7 @@ $ open tca_ver_verify/tca_ver_verify.xcodeproj
 - ナビゲーションによるバックボタンで空白が表示される
 - デモ画面のdismissで一つ前の画面に戻りたいが積んでいるスタック全てが全てが破棄される
 - `Perceptible state was accessed but is not being tracke`の警告が出る
+
+## iOS17での挙動
+
+TCA ver1.6, ver1.9のいずれにおいてもiOS17以上であれば不具合は生じない。
