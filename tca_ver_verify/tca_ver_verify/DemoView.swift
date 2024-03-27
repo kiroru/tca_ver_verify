@@ -14,10 +14,10 @@ struct DemoView: View {
     }
     
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithPerceptionTracking {
             Form {
                 Section {
-                    Text("\(viewStore.count)")
+                    Text("\(store.count)")
                 }
                 Section {
                     Button("Push") {

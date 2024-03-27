@@ -9,8 +9,10 @@ import ComposableArchitecture
 
 @Reducer
 struct RootStore {
+    
+    @ObservableState
     struct State: Equatable {
-        @PresentationState var alert: AlertState<Action.Alert>?
+        @Presents var alert: AlertState<Action.Alert>?
         var count = 0
         var path = StackState<Path.State>()
         
@@ -19,8 +21,9 @@ struct RootStore {
         }
     }
     
-    enum Action: Equatable {
+    enum Action {
         case alert(PresentationAction<Alert>)
+        @CasePathable
         enum Alert {
             case none
         }
@@ -34,13 +37,13 @@ struct RootStore {
         Reduce { state, action in
             switch action {
             case .pushNav:
-                state.path.append(.demo())
+                state.path.append(.demo(.init()))
                 return .none
-            case .selectTab(let tab):
+            case .selectTab(_):
                 return .none
             case let .path(action):
                 switch action {
-                case .element(id: let id, action: .demo(.push(let num))):
+                case .element(id: _, action: .demo(.push(let num))):
                     state.path.append(.demo(.init(count: num)))
                 default: break
                 }
@@ -49,23 +52,11 @@ struct RootStore {
                 return .none
             }
         }
-        .forEach(\.path, action: \.path) {
-            Path()
-        }
+        .forEach(\.path, action: \.path)
     }
     
-    @Reducer
-    struct Path {
-        enum State: Equatable {
-            case demo(DemoStore.State = .init())
-        }
-        enum Action: Equatable {
-            case demo(DemoStore.Action)
-        }
-        var body: some Reducer<State, Action> {
-            Scope(state: \.demo, action: \.demo) {
-                DemoStore()
-            }
-        }
+    @Reducer(state: .equatable)
+    enum Path {
+        case demo(DemoStore)
     }
 }

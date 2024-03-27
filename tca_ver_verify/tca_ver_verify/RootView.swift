@@ -20,7 +20,7 @@ struct RootView: View {
     @State var selection = RootTab.home
     
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithPerceptionTracking {
             TabView(selection: $selection) {
                 VStack {
                     Text("Home")
@@ -30,7 +30,7 @@ struct RootView: View {
                 }
                     .tabItem { Text("home") }
                     .tag(RootTab.home)
-                
+
                 Text("Settings")
                     .tabItem { Text("settings") }
                     .tag(RootTab.settings)
@@ -40,19 +40,15 @@ struct RootView: View {
                 selection = newValue
             }
             .fullScreenCover(
-                isPresented: viewStore.binding(get: \.presenting, send: { .onPresent($0) } )
+                isPresented: $store.presenting.sending(\.onPresent)
             ) {
-                NavigationStackStore(self.store.scope(state: \.path, action: \.path)) {
+                NavigationStack(path: $store.scope(state: \.path, action: \.path)
+                ) {
                     EmptyView()
-                } destination: { store in
-                    SwitchStore(store) {
-                        switch $0 {
-                        case .demo:
-                            CaseLet(/RootStore.Path.State.demo,
-                                     action: RootStore.Path.Action.demo) { _store in
-                                DemoView(store: _store)
-                            }
-                        }
+                } destination: {
+                    switch $0.case {
+                    case let .demo(store):
+                        DemoView(store: store)
                     }
                 }
             }

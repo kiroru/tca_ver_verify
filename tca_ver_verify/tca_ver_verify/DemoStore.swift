@@ -11,6 +11,7 @@ import ComposableArchitecture
 struct DemoStore {
     @Dependency(\.dismiss) var dismiss
 
+    @ObservableState
     struct State: Equatable {
         var count = 0
     }
