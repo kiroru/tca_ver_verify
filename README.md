@@ -26,6 +26,24 @@ $ oepn tca_ver_verify/tca_ver_verify.xcodeproj
 1. アプリを開いて"push nav"をタップする
 1. pushでカウンターをincreamentしながらナビゲーションに画面をpushする
 
+### ver1.6で生じる警告について
+
+iOS16でアプリを動作するとカウンターのデモ画面において以下の警告が発せられます。
+
+```
+Publishing changes from within view updates is not allowed, this will cause undefined behavior.
+```
+
+ただこれは本家のアプリでも同様のことが起こっています。
+
+```
+$ git clone git@github.com:pointfreeco/swift-composable-architecture.git
+$ git checkout -b 1.6.0 1.6.0
+$ open swift-composable-architecture/Examples/CaseStudies/CaseStudies.xcodeproj
+```
+
+このアプリでの動作を確認するに異常な挙動を示すものがないため警告として留める。
+
 ## TCA ver 1.9
 
 工事中。
