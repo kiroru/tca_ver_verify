@@ -46,4 +46,18 @@ $ open swift-composable-architecture/Examples/CaseStudies/CaseStudies.xcodeproj
 
 ## TCA ver 1.9
 
-工事中。
+NavigationStackによる挙動で不具体を確認できています。
+確認手順は以下の通りです。
+
+1. 以下のコマンドを実行
+```
+$ git checkout -b v1.9.0 v1.9.0
+$ open tca_ver_verify/tca_ver_verify.xcodeproj
+```
+
+### 不具合
+
+- push navをタップした後のデモ画面でpushをタップしても正常にナビゲーションがプッシュされない
+- ナビゲーションによるバックボタンで空白が表示される
+- デモ画面のdismissで一つ前の画面に戻りたいが積んでいるスタック全てが全てが破棄される
+- `Perceptible state was accessed but is not being tracke`の警告が出る
