@@ -42,7 +42,7 @@ struct RootView: View {
             .fullScreenCover(
                 isPresented: viewStore.binding(get: \.presenting, send: { .onPresent($0) } )
             ) {
-                NavigationStackStore(self.store.scope(state: \.path, action: \.path)) {
+                NavigationStackStore(self.store.scope(state: \.path, action: { .path($0) })) {
                     EmptyView()
                 } destination: { store in
                     SwitchStore(store) {
@@ -57,6 +57,6 @@ struct RootView: View {
                 }
             }
         }
-        .alert(store: self.store.scope(state: \.$alert, action: \.alert))
+        .alert(store: self.store.scope(state: \.$alert, action: { .alert($0) }))
     }
 }
