@@ -64,7 +64,7 @@ $ open tca_ver_verify/tca_ver_verify.xcodeproj
 ### 警告
 
 `Perceptible state was accessed but is not being tracke`の警告が出る。  
-ただし上記の警告は[ViewStoreのパッチ]()を当てることでなくなる。
+ただし上記の警告は[ViewStoreのパッチ](https://github.com/kiroru/tca_ver_verify/blob/v1.6.0/tca_ver_verify/tca_ver_verify/ViewStore.swift)を当てることでなくなる。
 
 ## iOS17での挙動
 
