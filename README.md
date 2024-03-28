@@ -60,7 +60,11 @@ $ open tca_ver_verify/tca_ver_verify.xcodeproj
 - push navをタップした後のデモ画面でpushをタップしても正常にナビゲーションがプッシュされない
 - ナビゲーションによるバックボタンで空白が表示される
 - デモ画面のdismissで一つ前の画面に戻りたいが積んでいるスタック全てが全てが破棄される
-- `Perceptible state was accessed but is not being tracke`の警告が出る
+
+### 警告
+
+`Perceptible state was accessed but is not being tracke`の警告が出る。  
+ただし上記の警告は[ViewStoreのパッチ]()を当てることでなくなる。
 
 ## iOS17での挙動
 
