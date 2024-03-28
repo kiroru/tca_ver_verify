@@ -9,9 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct DemoView: View {
-    @State var store = Store(initialState: DemoStore.State()) {
-        DemoStore()
-    }
+    let store: StoreOf<DemoStore>
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -21,18 +19,14 @@ struct DemoView: View {
                 }
                 Section {
                     Button("Push") {
-                        store.send(.increment)
+                        viewStore.send(.increment)
                     }
                     Button("Dismiss") {
-                        store.send(.dismissButtonTapped)
+                        viewStore.send(.dismissButtonTapped)
                     }
                 }
             }
             .navigationTitle("Demo")
         }
     }
-}
-
-#Preview {
-    DemoView()
 }
