@@ -7,8 +7,7 @@
 
 import ComposableArchitecture
 
-@Reducer
-struct RootStore {
+struct RootStore: Reducer {
     struct State: Equatable {
         @PresentationState var alert: AlertState<Action.Alert>?
         var count = 0
@@ -49,13 +48,12 @@ struct RootStore {
                 return .none
             }
         }
-        .forEach(\.path, action: \.path) {
+        .forEach(\.path, action: /Action.path) {
             Path()
         }
     }
     
-    @Reducer
-    struct Path {
+    struct Path: Reducer {
         enum State: Equatable {
             case demo(DemoStore.State = .init())
         }
@@ -63,7 +61,7 @@ struct RootStore {
             case demo(DemoStore.Action)
         }
         var body: some Reducer<State, Action> {
-            Scope(state: \.demo, action: \.demo) {
+            Scope(state: /State.demo, action: /Action.demo) {
                 DemoStore()
             }
         }

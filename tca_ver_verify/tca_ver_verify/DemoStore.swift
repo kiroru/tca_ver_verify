@@ -7,8 +7,7 @@
 
 import ComposableArchitecture
 
-@Reducer
-struct DemoStore {
+struct DemoStore: Reducer {
     @Dependency(\.dismiss) var dismiss
 
     struct State: Equatable {
