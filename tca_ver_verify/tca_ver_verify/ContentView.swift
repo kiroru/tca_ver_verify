@@ -13,9 +13,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
-        RootView(store: Store(initialState: RootStore.State()) {
-            RootStore()
-        })
+        RootView()
     }
 }
 

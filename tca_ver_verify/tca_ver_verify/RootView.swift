@@ -15,7 +15,7 @@ enum RootTab: Int, Hashable, CaseIterable {
 
 struct RootView: View {
     @State var store = Store(initialState: RootStore.State()) {
-        RootStore()
+        RootStore()._printChanges()
     }
     @State var selection = RootTab.home
     
