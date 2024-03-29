@@ -16,7 +16,7 @@ struct DemoStore {
     }
 
     enum Action: Equatable {
-        case increment
+        case onTapButton
         case push(Int)
         case dismissButtonTapped
     }
@@ -24,9 +24,8 @@ struct DemoStore {
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            case .increment:
-                state.count += 1
-                return .send(.push(state.count))
+            case .onTapButton:
+                return .send(.push(state.count + 1))
             case .push:
                 return .none
             case .dismissButtonTapped:
