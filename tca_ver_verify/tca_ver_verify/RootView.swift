@@ -42,15 +42,16 @@ struct RootView: View {
             .fullScreenCover(
                 isPresented: $store.presenting.sending(\.onPresent)
             ) {
-                NavigationStack(path: $store.scope(state: \.path, action: \.path)
-                ) {
+                NavigationStackStore(self.store.scope(state: \.path, action: \.path)) {
                     EmptyView()
-                } destination: {
-                    let destinationStore = $0.case
-                    WithPerceptionTracking {
-                        switch destinationStore {
-                        case let .demo(store):
-                            DemoView(store: store)
+                } destination: { store in
+                    SwitchStore(store) {
+                        switch $0 {
+                        case .demo:
+                            CaseLet(/RootStore.Path.State.demo,
+                                     action: RootStore.Path.Action.demo) { _store in
+                                DemoView(store: _store)
+                            }
                         }
                     }
                 }
