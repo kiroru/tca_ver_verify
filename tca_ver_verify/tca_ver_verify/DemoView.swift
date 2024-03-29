@@ -14,21 +14,21 @@ struct DemoView: View {
     }
     
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithPerceptionTracking {
             Form {
                 Section {
-                    Text("\(viewStore.count)")
+                    Text("\(store.count)")
                 }
                 Section {
                     Button("Push") {
-                        store.send(.increment)
+                        store.send(.onTapButton)
                     }
                     Button("Dismiss") {
                         store.send(.dismissButtonTapped)
                     }
                 }
             }
-            .navigationTitle("Demo")
+            .navigationTitle("Demo \(store.count)")
         }
     }
 }
