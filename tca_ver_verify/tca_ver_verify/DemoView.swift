@@ -21,14 +21,14 @@ struct DemoView: View {
                 }
                 Section {
                     Button("Push") {
-                        store.send(.increment)
+                        store.send(.onTapButton)
                     }
                     Button("Dismiss") {
                         store.send(.dismissButtonTapped)
                     }
                 }
             }
-            .navigationTitle("Demo")
+            .navigationTitle("Demo \(store.count)")
         }
     }
 }
