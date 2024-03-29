@@ -13,6 +13,10 @@ Perceptible state was accessed but is not being tracked. Track changes to state 
 という警告が出て画面の操作が反映されない。なおこの問題はiOS17以降では発生しない。  
 そこでこのリポジトリではver1.6とver1.9の両方のアプリを作成して挙動の違いを確認する。
 
+https://github.com/kiroru/tca_ver_verify/assets/83206405/4847f209-3ef4-4449-b082-fa72eb81019a
+
+![スクリーンショット 2024-03-29 14 00 05（3）](https://github.com/kiroru/tca_ver_verify/assets/83206405/196c61e2-5e53-4e4f-91cf-0eac061a7b9b)
+
 ## TCA ver 1.6
 
 NavigationStackStoreによる挙動を確認できています。  
