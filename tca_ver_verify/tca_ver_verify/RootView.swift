@@ -46,9 +46,12 @@ struct RootView: View {
                 ) {
                     EmptyView()
                 } destination: {
-                    switch $0.case {
-                    case let .demo(store):
-                        DemoView(store: store)
+                    let destinationStore = $0.case
+                    WithPerceptionTracking {
+                        switch destinationStore {
+                        case let .demo(store):
+                            DemoView(store: store)
+                        }
                     }
                 }
             }
