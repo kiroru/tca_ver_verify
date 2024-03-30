@@ -45,10 +45,10 @@ struct RootView: View {
                 NavigationStack(path: $store.scope(state: \.path, action: \.path)
                 ) {
                     EmptyView()
-                } destination: {
-                    let destinationStore = $0.case
+                } destination: { destination in
                     WithPerceptionTracking {
-                        switch destinationStore {
+                        let scope = destination.case
+                        switch scope {
                         case let .demo(store):
                             DemoView(store: store)
                         }
